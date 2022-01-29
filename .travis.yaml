@@ -1,0 +1,16 @@
+#required for docker
+sudo: required
+#dependencies
+services:
+  - docker
+before_install:
+  # download and install gc sdk
+  - curl https://sdk.cloud.google.com | bash > /dev/null;
+  # apply additional config
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  # install kubectl
+  - gcloud components update kubectl
+  # gcloud auth ( credentials from service-account.json file )
+  - gcloud auth activate-service-account --key-file service-account.json
+
+  #WIP - left at section 16 - lesson 276 (encrypting a serivce account file)
